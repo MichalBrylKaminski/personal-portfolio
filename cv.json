@@ -1,0 +1,270 @@
+{
+  "basics": {
+    "name": "Michał Kamiński",
+    "label": "Senior .NET Developer | AWS Enthusiast",
+    "image": "/me_avatar.jpg",
+    "email": "brylexpl@gmail.com",
+    "phone": "+48 697877220",
+    "url": "",
+    "summary": "I'm a .NET developer with almost 10 years of experience, dedicated to the travel industry for the past 7 years. For over 3 years I have also led a team of 8 people delivering many valuable features to the customer. Professionally and personally an AWS enthusiast, currently focusing on certification to expand my technical knowledge.",
+    "location": {
+      "city": "Lublin",
+      "region": "Woj. Lubelskie",
+      "countryCode": "PL"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "michał-kamiński-8b347791",
+        "url": "https://www.linkedin.com/in/michał-kamiński-8b347791"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "DataArt",
+      "position": ".NET Developer",
+      "startDate": "2016-03-01",
+      "endDate": null,
+      "summary": "Working for clients in the travel domain focused on building reliable and scalable ticket-selling platforms.",
+      "highlights": [
+        "Working with .NET, RabbitMQ+NServiceBus, AWS (EC2, SQS, Lambda, S3, Athena, DynamoDB), Oracle, MsSQL, TeamCity, NUnit, Moq"
+      ],
+      "location": "Lublin, Poland"
+    },
+    {
+      "name": "DataArt",
+      "position": "Team Lead",
+      "startDate": "2019-05-01",
+      "endDate": "2023-02-01",
+      "summary": "Leading a team of 6 developers, QA and BA. Delivering new functionalities for the customer from the travel industry.",
+      "highlights": [
+        "Focused on designing solutions, requirements discoveries, and providing tasks for the rest of the team"
+      ],
+      "location": "Lublin, Poland"
+    },
+    {
+      "name": "DataArt",
+      "position": "Team Lead",
+      "startDate": "2018-05-01",
+      "endDate": "2018-11-01",
+      "summary": "Leading a team of 6 developers and BA. Delivering new functionalities for the customer from the travel industry.",
+      "highlights": [],
+      "location": "Lublin, Poland"
+    },
+    {
+      "name": "Code Maze",
+      "position": "Technical Writer",
+      "startDate": "2023-04-01",
+      "endDate": "2024-12-01",
+      "summary": "Writing articles about .NET/C# related topics.",
+      "highlights": []
+    },
+    {
+      "name": "Transition Technologies S.A.",
+      "position": ".NET Developer",
+      "startDate": "2014-08-01",
+      "endDate": "2016-02-01",
+      "summary": "Part of the Continuous Engineering team: analyzing and fixing legacy defects reported by customers. Designed and implemented a tool that improved the compilation process of a multimodular project.",
+      "highlights": [
+        "Analyzing and fixing legacy defects reported by customers",
+        "Design and implementation of a tool that improved compilation process of multimodular project"
+      ],
+      "location": "Lublin, Poland"
+    },
+    {
+      "name": "Netrix Group",
+      "position": ".NET Developer / Android Developer",
+      "startDate": "2014-05-01",
+      "endDate": "2014-07-01",
+      "summary": "Implementing new functionalities for ERP software. Creating SQL scripts migrating data between Comarch CDN XL database and Netrix original ERP software. Implementing an internal Android app prototype for employee time reporting.",
+      "highlights": [
+        "Implementing new functionalities for ERP software",
+        "Creating SQL scripts migrating data between Comarch CDN XL and Netrix ERP",
+        "Implementing internal Android app prototype for employee time reporting"
+      ],
+      "location": "Lublin, Poland"
+    },
+    {
+      "name": "Comarch",
+      "position": ".NET Intern",
+      "startDate": "2013-07-01",
+      "endDate": "2014-03-01",
+      "summary": "Implementing a Windows service prototype for data synchronization between CDN XL desktop app database and mobile app database. Implementing new functionalities for a testing automation tool for CDN XL. Building a prototype of a new testing automation tool allowing users to record action sequences for bug reports.",
+      "highlights": [
+        "Prototype Windows service for synchronization between CDN XL and mobile app databases",
+        "New functionalities for the CDN XL testing automation tool",
+        "Prototype testing automation tool with action recording for customer support"
+      ],
+      "location": "Lublin, Poland"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Politechnika Lubelska",
+      "area": "Computer Science (Informatyka)",
+      "studyType": "Master of Science (MSc)",
+      "startDate": "2010-01-01",
+      "endDate": "2015-01-01",
+      "score": "",
+      "courses": [],
+      "activities": "Koło naukowe Magneton (Magneton Science Club)"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "date": "2023-04-01",
+      "issuer": "Amazon Web Services (AWS)",
+      "url": "https://aws.amazon.com/verification"
+    },
+    {
+      "name": "AWS Certified Cloud Practitioner",
+      "date": "2022-08-01",
+      "issuer": "Amazon Web Services (AWS)",
+      "url": "https://aws.amazon.com/verification"
+    }
+  ],
+  "skills": [
+    {
+      "name": "C#",
+      "level": "Senior",
+      "keywords": [
+        ".NET",
+        "NUnit",
+        "Moq"
+      ]
+    },
+    {
+      "name": "Cloud / AWS",
+      "level": "Intermediate",
+      "keywords": [
+        "EC2",
+        "SQS",
+        "Lambda",
+        "S3",
+        "Athena",
+        "DynamoDB"
+      ]
+    },
+    {
+      "name": "Messaging",
+      "level": "Intermediate",
+      "keywords": [
+        "RabbitMQ",
+        "NServiceBus"
+      ]
+    },
+    {
+      "name": "Databases",
+      "level": "Intermediate",
+      "keywords": [
+        "Oracle",
+        "MsSQL",
+        "SQL"
+      ]
+    },
+    {
+      "name": "DevOps & Tools",
+      "level": "Intermediate",
+      "keywords": [
+        "TeamCity",
+        "Git",
+        "Visual Studio",
+        "Continuous Delivery"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Polish",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional working proficiency"
+    }
+  ],
+  "projects": [],
+  "publications": [
+    {
+      "name": "Comparison of Rebus, NServiceBus, and MassTransit in .NET",
+      "publisher": "Code Maze",
+      "releaseDate": "2024-12-16",
+      "url": "https://code-maze.com/aspnetcore-comparison-of-rebus-nservicebus-and-masstransit/",
+      "summary": "A comparison of popular .NET messaging libraries — Rebus, NServiceBus, and MassTransit — covering their use in scalable and distributed applications."
+    },
+    {
+      "name": "Implementing the Saga Pattern Using Rebus and RabbitMQ",
+      "publisher": "Code Maze",
+      "releaseDate": "2024-08-05",
+      "url": "https://code-maze.com/dotnet-implementing-the-saga-pattern-using-rebus-and-rabbitmq/",
+      "summary": "A technical guide on implementing the Saga Pattern using Rebus and RabbitMQ in a .NET environment."
+    },
+    {
+      "name": "How to Register Multiple Implementations of the Same Interface in ASP.NET Core",
+      "publisher": "Code Maze",
+      "releaseDate": "2024-05-09",
+      "url": "https://code-maze.com/aspnetcore-register-multiple-interface-implementations/",
+      "summary": "A guide on how to effectively register and use multiple implementations of the same interface in ASP.NET Core dependency injection."
+    },
+    {
+      "name": "Comparing Performance of the switch and if-else Statements in C#",
+      "publisher": "Code Maze",
+      "releaseDate": "2024-03-14",
+      "url": "https://code-maze.com/csharp-comparing-performance-of-the-switch-and-if-else-statements/",
+      "summary": "A comparative performance analysis of switch and if-else control flow statements in C#, supported by benchmarks and compiler optimization insights."
+    },
+    {
+      "name": "Difference Between Select and SelectMany Methods in LINQ",
+      "publisher": "Code Maze",
+      "releaseDate": "2024-01-27",
+      "url": "https://code-maze.com/csharp-difference-between-select-and-selectmany-methods-in-linq/",
+      "summary": "An exploration of the Select and SelectMany LINQ methods in C# for efficient data querying and collection management."
+    },
+    {
+      "name": "ConcurrentQueue in C#",
+      "publisher": "Code Maze",
+      "releaseDate": "2023-10-14",
+      "url": "https://code-maze.com/csharp-concurrentqueue/",
+      "summary": "An in-depth look at the ConcurrentQueue class in C#, covering its concepts, usage, and role in ensuring thread safety and parallelism."
+    },
+    {
+      "name": "How to Mock IOptions in ASP.NET Core",
+      "publisher": "Code Maze",
+      "releaseDate": "2023-08-21",
+      "url": "https://code-maze.com/csharp-mock-ioptions/",
+      "summary": "In this article, we’ll unveil a straightforward approach to mock IOptions<T>, ensuring our tests remain both thorough and independent of real-world configurations."
+    },
+    {
+      "name": "Saga Pattern With NServiceBus in C#",
+      "publisher": "Code Maze",
+      "releaseDate": "2023-07-22",
+      "url": "https://code-maze.com/csharp-saga-pattern-with-nservicebus/",
+      "summary": "A technical guide on implementing the Saga Pattern using NServiceBus in a .NET environment."
+    },
+    {
+      "name": "Swashbuckle vs. NSwag in ASP.NET Core",
+      "publisher": "Code Maze",
+      "releaseDate": "2023-05-24",
+      "url": "https://code-maze.com/csharp-concurrentqueue/",
+      "summary": "In this article, we will explore the two popular libraries for generating OpenAPI documentation in C#: Swashbuckle and NSwag."
+    },
+    {
+      "name": "Short Circuit Evaluation of IF Statements with Await in C#",
+      "publisher": "Code Maze",
+      "releaseDate": "2023-04-20",
+      "url": "https://code-maze.com/csharp-short-circuit-evaluation-if-statements-with-await/",
+      "summary": "In this article, we are going to look at what exactly short circuit evaluation is in C# and how asynchronous calls are affecting it."
+    }
+  ],
+  "volunteer": [],
+  "awards": [],
+  "interests": [],
+  "references": [],
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2026-05-29"
+  }
+}
