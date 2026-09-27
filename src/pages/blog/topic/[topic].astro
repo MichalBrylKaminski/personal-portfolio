@@ -1,0 +1,24 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogIndex from '../../../components/blog/BlogIndex.astro';
+import { getAllPosts, getTopics } from '../../../lib/posts';
+import { site } from '../../../data/site';
+
+export const getStaticPaths = (async () => {
+  const posts = await getAllPosts();
+  return getTopics(posts).map((topic) => ({ params: { topic: topic.slug }, props: { topic } }));
+}) satisfies GetStaticPaths;
+
+const { topic } = Astro.props;
+const posts = await getAllPosts();
+---
+
+<BaseLayout title={`${topic.name} posts`} description={site.blog.description} current="blog">
+  <BlogIndex
+    posts={posts.filter((post) => post.topic === topic.name)}
+    totalCount={posts.length}
+    topics={getTopics(posts)}
+    activeTopic={topic.slug}
+  />
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import Icon from '../Icon.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { cv } from '../../lib/cv';
+import { formatYearMonth, parseYearMonth } from '../../lib/dates';
+
+const years = (start?: string, end?: string) =>
+  [start, end].filter(Boolean).map((date) => parseYearMonth(date!).year).join(' — ');
+---
+
+<section id="education" class="wrap pb-16 lg:pb-30">
+  <SectionHeading index="04" label="Education" title="Education & certifications" />
+
+  <div class="grid grid-cols-1 gap-2.5 lg:grid-cols-2 lg:gap-4">
+    <div class="flex flex-col gap-2.5 lg:gap-4">
+      {
+        cv.education.map((education) => (
+          <article class="card flex flex-col gap-2.5 px-5 py-[22px] lg:px-8 lg:py-7">
+            <p class="caption text-[10px] tracking-[0.12em] lg:text-[11px]">{years(education.startDate, education.endDate)}</p>
+            <h3 class="text-[21px] font-semibold text-ink lg:text-[26px]">{education.institution}</h3>
+            <p class="text-[15px] leading-relaxed text-ink-2 lg:text-base">
+              {[education.studyType, education.area].filter(Boolean).join(' · ')}
+            </p>
+            {education.activities && (
+              <div class="mt-3.5 flex flex-col gap-1.5 border-t border-border pt-[18px]">
+                <p class="caption">Activities</p>
+                <p class="text-[15px] text-ink">{education.activities}</p>
+              </div>
+            )}
+          </article>
+        ))
+      }
+    </div>
+
+    <ul class="flex flex-col gap-2.5 lg:gap-4">
+      {
+        cv.certificates.map((certificate) => (
+          <li>
+            <a href={certificate.url} class="card group flex items-center gap-3.5 px-5 py-[18px] lg:gap-5 lg:px-7 lg:py-6">
+              <span class="flex size-11 shrink-0 items-center justify-center rounded-sm border border-accent/40 text-accent lg:size-[52px]">
+                <Icon name="badge" size={22} />
+              </span>
+              <span class="flex flex-1 flex-col gap-1.5">
+                <span class="text-base leading-snug font-semibold text-ink group-hover:text-accent lg:text-[19px]">{certificate.name}</span>
+                <span class="caption text-[10px] tracking-[0.1em] lg:text-[11px]">
+                  {[certificate.issuer?.replace(/\s*\(.*\)$/, ''), certificate.date && formatYearMonth(parseYearMonth(certificate.date))]
+                    .filter(Boolean)
+                    .join(' · ')}
+                </span>
+              </span>
+              {certificate.url && <Icon name="arrow-up-right" size={18} class="hidden text-muted group-hover:text-accent lg:block" />}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

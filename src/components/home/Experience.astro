@@ -1,0 +1,86 @@
+---
+import Icon from '../Icon.astro';
+import SectionHeading from '../SectionHeading.astro';
+import RoleDetails from './RoleDetails.astro';
+import { careerStartYear, cv, durationOf, experience, isCurrent, monthRange, yearRange } from '../../lib/cv';
+
+const publishers = new Set(cv.publications.map((publication) => publication.publisher));
+---
+
+<section id="experience" class="wrap pb-16 lg:pb-30">
+  <SectionHeading index="01" label="Experience" title="Where I've worked">
+    <p class="caption hidden lg:block">{experience.length} companies · {careerStartYear} — now</p>
+  </SectionHeading>
+
+  <ol class="flex flex-col gap-3 lg:gap-0">
+    {
+      experience.map((group, index) => {
+        const current = isCurrent(group);
+        const [onlyRole] = group.roles;
+        const single = group.roles.length === 1;
+        const last = index === experience.length - 1;
+        return (
+          <li class="lg:grid lg:grid-cols-[160px_24px_minmax(0,1fr)] lg:gap-x-6">
+            <div class="hidden flex-col gap-1.5 pt-[30px] text-right lg:flex">
+              <span class="font-mono text-[13px] tracking-[0.04em] text-ink">{yearRange(group)}</span>
+              <span class="font-mono text-[11px] tracking-[0.08em] text-muted">{durationOf(group)}</span>
+            </div>
+
+            <div class="hidden flex-col items-center lg:flex" aria-hidden="true">
+              {current ? (
+                <span class="mt-[34px] size-[11px] rounded-[3px] bg-accent" />
+              ) : (
+                <span class="mt-[34px] size-[11px] rounded-[3px] border-2 border-border-strong bg-page" />
+              )}
+              {!last && <span class="mt-2 w-px flex-1 bg-border" />}
+            </div>
+
+            <div class:list={[{ 'lg:pb-5': !last }]}>
+              <article class="card flex flex-col gap-2.5 px-5 py-[22px] lg:px-8 lg:py-7">
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  {single ? (
+                    <h3 class="text-xl font-semibold text-ink lg:text-[22px]">
+                      {onlyRole.position} <span class="font-medium text-muted">· {group.company}</span>
+                    </h3>
+                  ) : (
+                    <h3 class="flex items-center gap-3.5 text-2xl font-semibold text-ink lg:text-[28px]">
+                      {group.company}
+                      {current && <span class="tag tag-accent h-6 text-[10px] font-medium tracking-[0.1em] uppercase">Current</span>}
+                    </h3>
+                  )}
+                  {single && publishers.has(group.company) ? (
+                    <a href="#writing" class="caption flex items-center gap-2 tracking-[0.1em] text-accent hover:text-ink">
+                      Read the articles <Icon name="arrow-down" size={13} strokeWidth={2} />
+                    </a>
+                  ) : (
+                    group.location && <span class="caption hidden tracking-[0.1em] lg:inline">{group.location}</span>
+                  )}
+                </div>
+                <p class="caption text-[10px] tracking-[0.1em] lg:hidden">
+                  {[yearRange(group), group.location].filter(Boolean).join(' · ')}
+                </p>
+
+                {single ? (
+                  <RoleDetails role={onlyRole} />
+                ) : (
+                  group.roles.map((role) => (
+                    <div class="mt-3.5 flex flex-col gap-2.5 border-t border-border pt-5 lg:mt-3.5 lg:pt-6">
+                      <div class="flex flex-col gap-1 lg:flex-row lg:items-baseline lg:justify-between lg:gap-4">
+                        <h4 class="text-lg font-semibold text-ink lg:text-xl">{role.position}</h4>
+                        <span class="caption text-[10px] tracking-[0.08em] lg:text-[11px]">
+                          {monthRange(role)}
+                          {!isCurrent(role) && ` · ${durationOf(role)}`}
+                        </span>
+                      </div>
+                      <RoleDetails role={role} />
+                    </div>
+                  ))
+                )}
+              </article>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ol>
+</section>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Stats from '../components/home/Stats.astro';
+import Experience from '../components/home/Experience.astro';
+import Writing from '../components/home/Writing.astro';
+import Skills from '../components/home/Skills.astro';
+import Education from '../components/home/Education.astro';
+import Contact from '../components/home/Contact.astro';
+import { getAllPosts } from '../lib/posts';
+
+const posts = await getAllPosts();
+---
+
+<BaseLayout current="home">
+  <Hero />
+  <Stats postCount={posts.length} />
+  <Experience />
+  <Writing posts={posts.slice(0, 5)} total={posts.length} />
+  <Skills />
+  <Education />
+  <Contact />
+</BaseLayout>

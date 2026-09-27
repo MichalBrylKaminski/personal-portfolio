@@ -1,0 +1,32 @@
+---
+import { isCloudKeyword, type Role } from '../../lib/cv';
+
+interface Props {
+  role: Role;
+}
+
+const { role } = Astro.props;
+---
+
+{role.summary && <p class="text-[15px] leading-relaxed text-ink-2">{role.summary}</p>}
+{
+  role.highlights.length > 0 && (
+    <ul class="flex flex-col gap-1.5">
+      {role.highlights.map((highlight) => (
+        <li class="flex gap-3 text-[15px] leading-relaxed text-ink-2">
+          <span class="font-mono text-accent" aria-hidden="true">›</span>
+          <span>{highlight}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+{
+  role.keywords.length > 0 && (
+    <ul class="flex flex-wrap gap-1.5" aria-label="Technologies">
+      {role.keywords.map((keyword) => (
+        <li class:list={['tag', { 'tag-accent': isCloudKeyword(keyword) }]}>{keyword}</li>
+      ))}
+    </ul>
+  )
+}

@@ -1,0 +1,17 @@
+---
+import { basics, cv, lastModified } from '../lib/cv';
+import { formatDay } from '../lib/dates';
+---
+
+<footer class="border-t border-border">
+  <div
+    class="caption wrap flex flex-col gap-2 py-6 text-[10px] leading-relaxed tracking-[0.1em] lg:h-[72px] lg:flex-row lg:items-center lg:justify-between lg:py-0 lg:text-[11px]"
+  >
+    <span>© {new Date().getFullYear()} {basics.name}</span>
+    <span>
+      <a href="/rss.xml" class="hover:text-accent">RSS</a> · Built from cv.json{
+        cv.meta?.version && ` · JSON Resume ${cv.meta.version}`
+      }{lastModified && ` · Updated ${formatDay(lastModified)}`}
+    </span>
+  </div>
+</footer>

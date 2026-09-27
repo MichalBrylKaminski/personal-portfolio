@@ -1,0 +1,53 @@
+---
+import Icon from '../Icon.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { formatDay } from '../../lib/dates';
+import type { PostSummary } from '../../lib/posts';
+import { site } from '../../data/site';
+
+interface Props {
+  posts: PostSummary[];
+  total: number;
+}
+
+const { posts, total } = Astro.props;
+---
+
+<section id="writing" class="wrap pb-16 lg:pb-30">
+  <SectionHeading index="02" label="Writing" title="Articles & notes">
+    <p slot="intro" class="hidden text-base leading-relaxed text-ink-2 lg:block">{site.writingIntro}</p>
+    <a href="/blog/" class="btn btn-outline-accent hidden shrink-0 lg:inline-flex">
+      All posts <Icon name="arrow-right" size={14} strokeWidth={2} />
+    </a>
+  </SectionHeading>
+
+  <ul class="flex flex-col border-b border-border lg:rounded-lg lg:border lg:bg-surface">
+    {
+      posts.map((post) => (
+        <li class="border-t border-border lg:first:border-t-0">
+          <a
+            href={post.href}
+            class="group flex flex-col gap-2 py-[18px] lg:grid lg:grid-cols-[132px_minmax(0,1fr)_112px_20px] lg:items-center lg:gap-6 lg:px-7 lg:py-6"
+          >
+            <span class="caption text-[10px] tracking-[0.1em] lg:hidden">
+              {formatDay(post.date)} · {post.topic}
+            </span>
+            <time datetime={post.date.toISOString()} class="hidden font-mono text-xs tracking-[0.04em] text-muted lg:block">
+              {formatDay(post.date)}
+            </time>
+            <span class="flex min-w-0 flex-col gap-1.5">
+              <span class="text-lg leading-snug font-semibold text-ink group-hover:text-accent lg:text-xl">{post.title}</span>
+              <span class="hidden truncate text-sm leading-normal text-ink-2 lg:block">{post.summary}</span>
+            </span>
+            <span class="tag hidden h-6 justify-self-end text-[10px] tracking-[0.1em] uppercase lg:inline-flex">{post.topic}</span>
+            <Icon name="arrow-up-right" size={18} class="hidden text-muted group-hover:text-accent lg:block" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <a href="/blog/" class="btn btn-outline-accent mt-5 h-12 w-full lg:hidden">
+    All {total} posts <Icon name="arrow-right" size={14} strokeWidth={2} />
+  </a>
+</section>

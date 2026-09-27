@@ -1,0 +1,163 @@
+---
+import Icon from '../Icon.astro';
+import Monogram from '../Monogram.astro';
+import PostRow from './PostRow.astro';
+import { basics, labelParts } from '../../lib/cv';
+import { formatDay } from '../../lib/dates';
+import type { PostSummary, Topic } from '../../lib/posts';
+import { site } from '../../data/site';
+
+interface Props {
+  /** Posts to list: all of them, or one topic's. */
+  posts: PostSummary[];
+  totalCount: number;
+  topics: Topic[];
+  activeTopic?: string;
+}
+
+const { posts, totalCount, topics, activeTopic } = Astro.props;
+const [featured, ...rest] = posts;
+
+const years = [...new Set(rest.map((post) => post.date.getUTCFullYear()))].sort((a, b) => b - a);
+const byYear = years.map((year) => ({ year, posts: rest.filter((post) => post.date.getUTCFullYear() === year) }));
+
+const filters = [
+  { name: 'All', href: '/blog/', count: totalCount, active: !activeTopic },
+  ...topics.map((topic) => ({
+    name: topic.name,
+    href: `/blog/topic/${topic.slug}/`,
+    count: topic.count,
+    active: topic.slug === activeTopic,
+  })),
+];
+const pad = (count: number) => String(count).padStart(2, '0');
+---
+
+<section class="border-b border-border">
+  <div class="wrap flex flex-col gap-5 pt-12 pb-10 lg:pt-22 lg:pb-14">
+    <p class="caption flex items-center gap-3">
+      <span class="size-2 rounded-[2px] bg-accent"></span>Blog · {totalCount} posts
+    </p>
+    <h1 class="max-w-[960px] text-[40px] leading-[1.02] font-semibold tracking-[-0.01em] text-ink lg:text-[64px]">
+      {site.blog.title}
+    </h1>
+    <p class="max-w-[680px] text-base leading-relaxed text-ink-2 lg:text-lg">{site.blog.description}</p>
+  </div>
+</section>
+
+<div class="wrap flex flex-col gap-12 pt-8 pb-16 lg:flex-row lg:items-start lg:pt-14 lg:pb-30">
+  <div class="flex min-w-0 flex-1 flex-col gap-10 lg:gap-14">
+    <nav aria-label="Topics" class="-mx-5 overflow-x-auto px-5 lg:hidden">
+      <ul class="flex gap-2">
+        {
+          filters.map((filter) => (
+            <li>
+              <a
+                href={filter.href}
+                aria-current={filter.active ? 'page' : undefined}
+                class:list={[
+                  'btn h-10 gap-2 px-3.5 whitespace-nowrap normal-case',
+                  filter.active ? 'border-accent/40 bg-surface-active text-ink' : 'text-ink-2',
+                ]}
+              >
+                {filter.name}
+                <span class:list={['text-[11px]', filter.active ? 'text-accent' : 'text-muted']}>{pad(filter.count)}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    {
+      featured && (
+        <a href={featured.href} class="card group flex flex-col gap-4 p-6 lg:p-9">
+          <p class="caption flex flex-wrap items-center gap-3 tracking-[0.12em]">
+            <span class="tag tag-accent h-6 text-[10px] font-medium tracking-[0.1em] uppercase">Latest</span>
+            <time datetime={featured.date.toISOString()}>{formatDay(featured.date)}</time>
+            <span aria-hidden="true">·</span>
+            <span>{featured.topic}</span>
+          </p>
+          <h2 class="text-[28px] leading-[1.12] font-semibold text-ink group-hover:text-accent lg:text-4xl">{featured.title}</h2>
+          <p class="text-base leading-relaxed text-ink-2 lg:text-[17px]">{featured.summary}</p>
+          <div class="mt-2 flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <span class="caption tracking-[0.12em]">
+              {featured.publisher ? `Originally on ${featured.publisher}` : `By ${basics.name}`}
+            </span>
+            <span class="flex items-center gap-2 font-mono text-xs tracking-[0.08em] text-accent uppercase">
+              {featured.publisher ? 'Read article' : 'Read post'}
+              <Icon name={featured.publisher ? 'arrow-up-right' : 'arrow-right'} size={14} strokeWidth={2} />
+            </span>
+          </div>
+        </a>
+      )
+    }
+
+    {
+      byYear.map((group) => (
+        <section aria-labelledby={`year-${group.year}`}>
+          <div class="flex items-center gap-4 border-b border-border pb-3">
+            <h2 id={`year-${group.year}`} class="text-[28px] font-semibold text-ink lg:text-[32px]">
+              {group.year}
+            </h2>
+            <span class="caption ml-auto tracking-[0.12em]">
+              {group.posts.length} {group.posts.length === 1 ? 'post' : 'posts'}
+            </span>
+          </div>
+          <ul>
+            {group.posts.map((post) => (
+              <PostRow post={post} />
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+
+  <aside class="flex w-full shrink-0 flex-col gap-4 lg:w-80">
+    <div class="card flex flex-col gap-4 p-6">
+      <div class="flex items-center gap-3.5">
+        <Monogram class="size-[52px] text-lg" />
+        <span class="flex flex-col gap-1">
+          <span class="text-lg font-semibold text-ink">{basics.name}</span>
+          <span class="caption text-[10px] tracking-[0.12em]">{labelParts[0]}</span>
+        </span>
+      </div>
+      <p class="text-[15px] leading-relaxed text-ink-2">{site.blog.authorBlurb}</p>
+      <a href="/" class="btn">View portfolio <Icon name="arrow-right" size={14} strokeWidth={2} /></a>
+    </div>
+
+    <nav aria-label="Topics" class="card hidden flex-col gap-2 p-5 lg:flex">
+      <p class="caption px-1 pt-1 pb-2">Topics</p>
+      <ul class="flex flex-col gap-1">
+        {
+          filters.map((filter) => (
+            <li>
+              <a
+                href={filter.href}
+                aria-current={filter.active ? 'page' : undefined}
+                class:list={[
+                  'flex h-11 items-center justify-between rounded-sm border px-3.5 text-base font-medium',
+                  filter.active
+                    ? 'border-accent/40 bg-surface-active text-ink'
+                    : 'border-transparent text-ink-2 hover:bg-surface-2 hover:text-ink',
+                ]}
+              >
+                <span>{filter.name}</span>
+                <span class:list={['font-mono text-[11px] tracking-[0.06em]', filter.active ? 'text-accent' : 'text-muted']}>
+                  {pad(filter.count)}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="card flex flex-col gap-3.5 p-6">
+      <p class="caption">Follow along</p>
+      <p class="text-[15px] leading-relaxed text-ink-2">New posts show up in the feed as soon as they're published.</p>
+      <a href="/rss.xml" class="btn btn-primary"><Icon name="rss" size={14} strokeWidth={2.2} /> RSS feed</a>
+    </div>
+  </aside>
+</div>

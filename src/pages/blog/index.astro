@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogIndex from '../../components/blog/BlogIndex.astro';
+import { getAllPosts, getTopics } from '../../lib/posts';
+import { site } from '../../data/site';
+
+const posts = await getAllPosts();
+---
+
+<BaseLayout title="Blog" description={site.blog.description} current="blog">
+  <BlogIndex posts={posts} totalCount={posts.length} topics={getTopics(posts)} />
+</BaseLayout>

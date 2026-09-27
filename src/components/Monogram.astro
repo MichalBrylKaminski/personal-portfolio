@@ -1,0 +1,22 @@
+---
+import { basics } from '../lib/cv';
+
+interface Props {
+  class?: string;
+}
+
+const initials = basics.name
+  .split(/\s+/)
+  .map((part) => part[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
+---
+
+<span
+  class:list={[
+    'flex items-center justify-center rounded-sm bg-accent font-bold tracking-[0.02em] text-accent-ink',
+    Astro.props.class,
+  ]}
+  aria-hidden="true">{initials}</span
+>

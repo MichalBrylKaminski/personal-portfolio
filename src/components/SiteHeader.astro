@@ -1,0 +1,89 @@
+---
+import Icon from './Icon.astro';
+import Monogram from './Monogram.astro';
+import { basics } from '../lib/cv';
+
+interface Props {
+  current: 'home' | 'blog';
+}
+
+const { current } = Astro.props;
+const onHome = current === 'home';
+const section = (id: string) => (onHome ? `#${id}` : `/#${id}`);
+
+const links = [
+  { label: 'About', href: onHome ? '#top' : '/', active: onHome },
+  { label: 'Experience', href: section('experience') },
+  { label: 'Writing', href: section('writing') },
+  { label: 'Stack', href: section('stack') },
+  { label: 'Education', href: section('education') },
+  { label: 'Contact', href: section('contact') },
+  { label: 'Blog', href: '/blog/', active: current === 'blog', dot: true },
+];
+---
+
+<header class="border-b border-border">
+  <div class="wrap flex h-16 items-center gap-6 lg:h-[72px]">
+    <a href="/" class="flex items-center gap-3 text-ink hover:text-ink">
+      <Monogram class="size-8 text-[13px] lg:size-9 lg:text-[15px]" />
+      <span class="text-[17px] font-semibold tracking-[0.02em] lg:text-lg">{basics.name.toLowerCase()}</span>
+    </a>
+
+    <nav aria-label="Main" class="ml-auto hidden gap-1 lg:flex">
+      {
+        links.map((link) => (
+          <a href={link.href} class="nav-tab gap-2" aria-current={link.active ? 'page' : undefined}>
+            {link.label}
+            {link.dot && <span class="size-1.5 rounded-[2px] bg-accent" />}
+          </a>
+        ))
+      }
+    </nav>
+
+    <button
+      type="button"
+      class="btn ml-auto size-11 p-0 lg:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      data-menu-toggle
+    >
+      <Icon name="menu" size={18} strokeWidth={2} class="menu-open" />
+      <Icon name="close" size={18} strokeWidth={2} class="menu-close hidden" />
+    </button>
+  </div>
+
+  <nav id="mobile-nav" aria-label="Main" class="wrap hidden border-t border-border py-3 lg:hidden" data-menu>
+    <ul class="flex flex-col">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class="nav-tab gap-2" aria-current={link.active ? 'page' : undefined}>
+              {link.label}
+              {link.dot && <span class="size-1.5 rounded-[2px] bg-accent" />}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+
+  function setOpen(open: boolean) {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    toggle.querySelector('.menu-open')?.classList.toggle('hidden', open);
+    toggle.querySelector('.menu-close')?.classList.toggle('hidden', !open);
+    menu.classList.toggle('hidden', !open);
+  }
+
+  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  menu?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).closest('a')) setOpen(false);
+  });
+</script>

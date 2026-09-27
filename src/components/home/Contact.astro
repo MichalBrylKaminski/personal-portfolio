@@ -1,0 +1,62 @@
+---
+import Icon from '../Icon.astro';
+import { basics, location, profilePath } from '../../lib/cv';
+import { site } from '../../data/site';
+
+const rows = [
+  basics.email && { label: 'Email', value: basics.email, href: `mailto:${basics.email}` },
+  basics.phone && { label: 'Phone', value: basics.phone, href: `tel:${basics.phone.replace(/\s+/g, '')}` },
+  ...(basics.profiles ?? []).map((profile) => ({ label: profile.network, value: profilePath(profile), href: profile.url })),
+  location.city && { label: 'Location', value: `${location.city}, ${location.countryCode}` },
+].filter((row) => !!row) as { label: string; value: string; href?: string }[];
+---
+
+<section id="contact" class="wrap pb-14 lg:pb-24">
+  <div class="card grid grid-cols-1 gap-8 px-5 py-7 lg:grid-cols-2 lg:gap-16 lg:p-14">
+    <div class="flex flex-col gap-3.5 lg:gap-4">
+      <p class="caption flex items-center gap-2.5">
+        <span class="text-accent">05</span>
+        <span class="h-px w-6 bg-border-strong"></span>
+        Contact
+      </p>
+      <h2 class="text-[40px] leading-[1.02] font-semibold tracking-[-0.01em] text-ink lg:text-[56px]">Let's talk.</h2>
+      <p class="max-w-[420px] text-[15px] leading-relaxed text-ink-2 lg:text-[17px]">
+        Based in {location.city}, {location.country}. {site.contactIntro}
+      </p>
+      {
+        basics.email && (
+          <a href={`mailto:${basics.email}`} class="btn btn-primary mt-3 hidden self-start lg:inline-flex">
+            <Icon name="mail" size={15} strokeWidth={2} /> Send an email
+          </a>
+        )
+      }
+    </div>
+
+    <dl class="flex flex-col justify-center">
+      {
+        rows.map((row) => (
+          <div class="flex h-[52px] items-center justify-between gap-4 border-b border-border last:border-b-0 lg:h-[60px]">
+            <dt class="caption text-[10px] lg:text-[11px]">{row.label}</dt>
+            <dd class="min-w-0 truncate text-[15px] text-ink lg:text-[17px]">
+              {row.href ? (
+                <a href={row.href} class="hover:text-accent" rel={row.href.startsWith('http') ? 'me' : undefined}>
+                  {row.value}
+                </a>
+              ) : (
+                row.value
+              )}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    {
+      basics.email && (
+        <a href={`mailto:${basics.email}`} class="btn btn-primary h-12 lg:hidden">
+          <Icon name="mail" size={15} strokeWidth={2} /> Send an email
+        </a>
+      )
+    }
+  </div>
+</section>

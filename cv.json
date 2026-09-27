@@ -2,11 +2,11 @@
   "basics": {
     "name": "Michał Kamiński",
     "label": "Senior .NET Developer | AWS Enthusiast",
-    "image": "/me_avatar.jpg",
+    "image": "/me_avatar.png",
     "email": "brylexpl@gmail.com",
     "phone": "+48 697877220",
     "url": "",
-    "summary": "I'm a .NET developer with almost 10 years of experience, dedicated to the travel industry for the past 7 years. For over 3 years I have also led a team of 8 people delivering many valuable features to the customer. Professionally and personally an AWS enthusiast, currently focusing on certification to expand my technical knowledge.",
+    "summary": "I'm a .NET developer with over a decade of experience, dedicated to the travel industry since 2016. For over 3 years I have also led a team of 8 people delivering many valuable features to the customer. Professionally and personally an AWS enthusiast, currently focusing on certification to expand my technical knowledge.",
     "location": {
       "city": "Lublin",
       "region": "Woj. Lubelskie",
@@ -15,8 +15,13 @@
     "profiles": [
       {
         "network": "LinkedIn",
-        "username": "michał-kamiński-8b347791",
-        "url": "https://www.linkedin.com/in/michał-kamiński-8b347791"
+        "username": "michal-kaminski-8b347791",
+        "url": "https://www.linkedin.com/in/michal-kaminski-8b347791"
+      },
+      {
+        "network": "X",
+        "username": "_MichalKaminski",
+        "url": "https://www.x.com/_MichalKaminski"
       }
     ]
   },
@@ -27,8 +32,22 @@
       "startDate": "2016-03-01",
       "endDate": null,
       "summary": "Working for clients in the travel domain focused on building reliable and scalable ticket-selling platforms.",
-      "highlights": [
-        "Working with .NET, RabbitMQ+NServiceBus, AWS (EC2, SQS, Lambda, S3, Athena, DynamoDB), Oracle, MsSQL, TeamCity, NUnit, Moq"
+      "highlights": [],
+      "keywords": [
+        ".NET",
+        "RabbitMQ",
+        "NServiceBus",
+        "AWS EC2",
+        "SQS",
+        "Lambda",
+        "S3",
+        "Athena",
+        "DynamoDB",
+        "Oracle",
+        "MsSQL",
+        "TeamCity",
+        "NUnit",
+        "Moq"
       ],
       "location": "Lublin, Poland"
     },
@@ -247,7 +266,7 @@
       "name": "Swashbuckle vs. NSwag in ASP.NET Core",
       "publisher": "Code Maze",
       "releaseDate": "2023-05-24",
-      "url": "https://code-maze.com/csharp-concurrentqueue/",
+      "url": "https://code-maze.com/aspnetcore-swashbuckle-vs-nswag/",
       "summary": "In this article, we will explore the two popular libraries for generating OpenAPI documentation in C#: Swashbuckle and NSwag."
     },
     {

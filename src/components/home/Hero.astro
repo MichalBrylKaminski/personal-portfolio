@@ -1,0 +1,85 @@
+---
+import Icon from '../Icon.astro';
+import Avatar from './Avatar.astro';
+import { basics, cv, labelParts, location, primaryProfile } from '../../lib/cv';
+import { publicFileExists } from '../../lib/files';
+import { site } from '../../data/site';
+
+const [firstName, ...otherNames] = basics.name.split(' ');
+const hasCvPdf = publicFileExists('/cv.pdf');
+
+const readout = [
+  { label: 'Role', value: site.readout.role },
+  { label: 'Domain', value: site.readout.domain },
+  { label: 'Certs', value: site.readout.certs },
+  { label: 'Speaks', value: cv.languages.map((language) => language.language).join(' · ') },
+].filter((row) => row.value);
+---
+
+<section id="top" class="wrap flex gap-16 pt-10 pb-12 lg:items-start lg:pt-24 lg:pb-[72px]">
+  <div class="flex min-w-0 flex-1 flex-col">
+    <div class="flex items-center gap-4 lg:hidden">
+      <Avatar size={72} class="shrink-0" />
+      <p class="caption flex flex-col gap-1.5 text-[10px] leading-relaxed">
+        <span class="flex items-center gap-2">
+          <span class="size-[7px] rounded-[2px] bg-accent"></span>{labelParts[0]}
+        </span>
+        <span>{[...labelParts.slice(1), `${location.city}, ${location.countryCode}`].join(' · ')}</span>
+      </p>
+    </div>
+    <p class="caption hidden items-center gap-3 lg:flex">
+      <span class="size-2 rounded-[2px] bg-accent"></span>{labelParts.join(' · ')}
+    </p>
+
+    <h1 class="mt-7 text-[56px] leading-[0.98] font-semibold tracking-[-0.015em] text-ink lg:mt-6 lg:text-[96px]">
+      {firstName}<br />{otherNames.join(' ')}
+    </h1>
+    <p class="mt-5 max-w-[640px] text-base leading-[1.65] text-ink-2 lg:mt-8 lg:text-lg">{basics.summary}</p>
+
+    <div class="mt-7 hidden flex-wrap gap-6 font-mono text-xs tracking-[0.04em] text-ink-2 lg:flex">
+      <span class="flex items-center gap-2"><Icon name="pin" size={15} class="text-muted" />{location.city}, {location.country}</span>
+      {
+        basics.email && (
+          <a href={`mailto:${basics.email}`} class="flex items-center gap-2 hover:text-accent">
+            <Icon name="mail" size={15} class="text-muted" />
+            {basics.email}
+          </a>
+        )
+      }
+    </div>
+
+    <div class="mt-7 flex flex-col gap-2.5 sm:flex-row sm:gap-3 lg:mt-9">
+      <a href="#contact" class="btn btn-primary h-12 lg:h-11">Get in touch <Icon name="arrow-right" size={14} strokeWidth={2} /></a>
+      {
+        primaryProfile && (
+          <a href={primaryProfile.url} class="btn h-12 lg:h-11" rel="me">
+            {primaryProfile.network} <Icon name="arrow-up-right" size={14} strokeWidth={2} />
+          </a>
+        )
+      }
+      {
+        hasCvPdf && (
+          <a href="/cv.pdf" class="btn btn-ghost h-12 lg:h-11" download>
+            <Icon name="download" size={14} strokeWidth={2} /> Download CV
+          </a>
+        )
+      }
+    </div>
+  </div>
+
+  <aside class="card hidden w-80 shrink-0 flex-col gap-4 p-4 lg:flex" aria-label="At a glance">
+    <div class="flex h-72 items-center justify-center">
+      <Avatar size={286} />
+    </div>
+    <dl class="flex flex-col">
+      {
+        readout.map((row) => (
+          <div class="flex h-8 items-center justify-between border-b border-border last:border-b-0">
+            <dt class="caption">{row.label}</dt>
+            <dd class="text-sm text-ink">{row.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </aside>
+</section>

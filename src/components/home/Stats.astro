@@ -1,0 +1,33 @@
+---
+import { careerStartYear, careerYears, cv, leadYears } from '../../lib/cv';
+
+interface Props {
+  postCount: number;
+}
+
+const certificates = cv.certificates;
+const allAws = certificates.length > 0 && certificates.every((certificate) => /aws|amazon/i.test(certificate.issuer ?? ''));
+
+const stats = [
+  { value: String(careerYears), unit: 'YRS', label: `Shipping .NET since ${careerStartYear}` },
+  leadYears.whole > 0 && { value: `${leadYears.whole}${leadYears.plus ? '+' : ''}`, unit: 'YRS', label: 'Leading delivery teams' },
+  Astro.props.postCount > 0 && { value: String(Astro.props.postCount), unit: 'POSTS', label: 'Technical articles published' },
+  certificates.length > 0 && { value: String(certificates.length), unit: allAws ? 'AWS' : 'CERTS', label: 'Certifications held' },
+].filter((stat) => stat !== false);
+---
+
+<section aria-label="Highlights" class="wrap pb-16 lg:pb-[104px]">
+  <ul class="grid grid-cols-2 gap-2.5 lg:grid-cols-4 lg:gap-4">
+    {
+      stats.map((stat) => (
+        <li class="card flex flex-col gap-2 p-[18px] lg:gap-2.5 lg:p-6">
+          <p class="flex items-baseline gap-1.5 lg:gap-2">
+            <span class="text-4xl leading-none font-semibold text-ink lg:text-5xl">{stat.value}</span>
+            <span class="font-mono text-[11px] tracking-[0.1em] text-accent lg:text-xs">{stat.unit}</span>
+          </p>
+          <p class="caption text-[10px] leading-relaxed tracking-[0.1em] lg:text-[11px] lg:tracking-[0.12em]">{stat.label}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

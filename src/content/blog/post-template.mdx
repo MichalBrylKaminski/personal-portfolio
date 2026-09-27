@@ -1,0 +1,46 @@
+---
+title: How to write a post
+description: A draft that only renders in `astro dev`. Copy it to start a new post, then delete this one.
+pubDate: 2026-09-27
+topic: C#
+draft: true
+---
+
+Every file in `src/content/blog/` becomes a page at `/blog/<file-name>/`. The frontmatter above is validated by
+`src/content.config.ts`:
+
+| Field         | Required | Notes                                                        |
+| ------------- | -------- | ------------------------------------------------------------ |
+| `title`       | yes      | Shown on the blog index, the post page and in the RSS feed.  |
+| `description` | yes      | One or two sentences; used as the summary and meta tag.      |
+| `pubDate`     | yes      | `YYYY-MM-DD`. Posts are sorted by it, newest first.          |
+| `topic`       | yes      | Groups posts under `/blog/topic/<topic>/`.                   |
+| `updatedDate` | no       | Shown next to the publish date when set.                     |
+| `draft`       | no       | `true` keeps the post out of production builds and the feed. |
+
+## Code
+
+Fenced code blocks are highlighted at build time:
+
+```csharp
+public sealed class OrderSaga : Saga<OrderSagaData>,
+    IAmStartedByMessages<OrderPlaced>,
+    IHandleMessages<PaymentCompleted>
+{
+    public Task Handle(OrderPlaced message, IMessageHandlerContext context)
+    {
+        Data.OrderId = message.OrderId;
+        return context.Send(new ChargeCard(message.OrderId));
+    }
+
+    public Task Handle(PaymentCompleted message, IMessageHandlerContext context)
+    {
+        MarkAsComplete();
+        return context.Publish(new OrderConfirmed(Data.OrderId));
+    }
+}
+```
+
+Inline code like `IMessageHandlerContext` gets a subtle background.
+
+> Because this file is MDX, you can also import and use Astro components inside a post.
