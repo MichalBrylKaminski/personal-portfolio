@@ -1,15 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import node from '@astrojs/node';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  // Set SITE_URL once the hosting/domain is decided; it's used for canonical URLs and the RSS feed.
-  site: process.env.SITE_URL,
-  output: 'server',
-  adapter: node({ mode: 'standalone' }),
-  integrations: [mdx()],
+  // Used for canonical URLs, the RSS feed and the sitemap. Override with SITE_URL (e.g. for preview builds).
+  site: process.env.SITE_URL ?? 'https://brylex-it.pl',
+  integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },

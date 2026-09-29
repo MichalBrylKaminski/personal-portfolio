@@ -1,13 +1,13 @@
 # CLAUDE.md
 
-Personal portfolio + blog for Michał Kamiński. Astro 7 (Node adapter, server output), Tailwind CSS v4, MDX. No UI framework, almost no client JS (only the mobile menu toggle in `SiteHeader.astro`).
+Personal portfolio + blog for Michał Kamiński. Astro 7 (static output), Tailwind CSS v4, MDX. No UI framework, almost no client JS (the mobile menu toggle in `SiteHeader.astro` and Vercel Analytics, injected in `BaseLayout.astro`).
 
 ## Commands
 
 - `npm run dev` — dev server on `localhost:4321`; draft posts are visible here only.
 - `npm run build` — `astro check` then `astro build` to `dist/`. Run this to verify changes; it must finish with 0 errors.
 - `npx astro sync` — regenerate content-collection types after changing `src/content.config.ts`.
-- `SITE_URL=https://… npm run build` — sets `site` (canonical URLs, RSS). Hosting is undecided, so it's unset by default.
+- `SITE_URL=https://… npm run build` — overrides `site` (defaults to `https://brylex-it.pl`; used for canonical URLs, RSS, sitemap).
 
 ## Where things come from
 
@@ -36,5 +36,5 @@ The look follows the **Tallydial** design system ("control room": a single dark 
 ## Decisions already made
 
 - Command palette (Ctrl K) was intentionally dropped for now.
-- Hosting is Hostinger (Node.js only): `@astrojs/node` adapter, `output: 'server'`, standalone mode. Run `npm run build` then `npm start` (`dist/server/entry.mjs`); Hostinger entry file is `dist/server/entry.mjs`. No sitemap yet (needs `site`).
+- Hosting is Vercel (static output, no adapter) with the domain `brylex-it.pl`. The original Hostinger host couldn't be used, so the Node adapter was added and then removed. `@astrojs/sitemap` generates the sitemap.
 - Git remote: `github.com/MichalBrylKaminski/personal-portfolio`. Main branch is `master`.
