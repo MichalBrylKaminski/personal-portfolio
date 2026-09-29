@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Personal portfolio + blog for Michał Kamiński. Astro 7 (static output), Tailwind CSS v4, MDX. No UI framework, almost no client JS (only the mobile menu toggle in `SiteHeader.astro`).
+Personal portfolio + blog for Michał Kamiński. Astro 7 (Node adapter, server output), Tailwind CSS v4, MDX. No UI framework, almost no client JS (only the mobile menu toggle in `SiteHeader.astro`).
 
 ## Commands
 
@@ -36,5 +36,5 @@ The look follows the **Tallydial** design system ("control room": a single dark 
 ## Decisions already made
 
 - Command palette (Ctrl K) was intentionally dropped for now.
-- Hosting is undecided, so there's no adapter and no sitemap (sitemap needs `site`). Add them when a host is chosen.
+- Hosting is Hostinger (Node.js only): `@astrojs/node` adapter, `output: 'server'`, standalone mode. Run `npm run build` then `npm start` (`dist/server/entry.mjs`); Hostinger entry file is `dist/server/entry.mjs`. No sitemap yet (needs `site`).
 - Git remote: `github.com/MichalBrylKaminski/personal-portfolio`. Main branch is `master`.
