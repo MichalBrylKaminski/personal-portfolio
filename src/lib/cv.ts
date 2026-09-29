@@ -64,6 +64,15 @@ export interface Publication {
   summary?: string;
 }
 
+export interface Project {
+  name: string;
+  startDate: string;
+  endDate?: string | null;
+  url?: string;
+  description?: string;
+  highlights?: string[];
+}
+
 export interface Resume {
   basics: {
     name: string;
@@ -81,6 +90,7 @@ export interface Resume {
   certificates: Certificate[];
   skills: Skill[];
   languages: Language[];
+  projects: Project[];
   publications: Publication[];
   meta?: { version?: string; lastModified?: string };
 }
@@ -161,6 +171,27 @@ export const experience: ExperienceGroup[] = (() => {
   for (const group of list) group.roles.sort(byRecency);
   return list.sort(byRecency);
 })();
+
+export interface ProjectView {
+  name: string;
+  url?: string;
+  start: YearMonth;
+  end: YearMonth | null;
+  description?: string;
+  highlights: string[];
+}
+
+/** Projects, most recent first. */
+export const projects: ProjectView[] = cv.projects
+  .map((project) => ({
+    name: project.name,
+    url: project.url,
+    start: parseYearMonth(project.startDate),
+    end: project.endDate ? parseYearMonth(project.endDate) : null,
+    description: project.description,
+    highlights: project.highlights ?? [],
+  }))
+  .sort((a, b) => compareYearMonth(endOrNow(b.end), endOrNow(a.end)) || compareYearMonth(b.start, a.start));
 
 export function isCurrent(item: { end: YearMonth | null }): boolean {
   return item.end === null;

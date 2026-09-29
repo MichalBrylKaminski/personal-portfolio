@@ -15,6 +15,7 @@ const links = [
   { label: 'About', href: onHome ? '#top' : '/', active: onHome },
   { label: 'Experience', href: section('experience') },
   { label: 'Writing', href: section('writing') },
+  { label: 'Projects', href: section('projects') },
   { label: 'Stack', href: section('stack') },
   { label: 'Education', href: section('education') },
   { label: 'Contact', href: section('contact') },
@@ -22,7 +23,7 @@ const links = [
 ];
 ---
 
-<header class="border-b border-border">
+<header class="sticky top-0 z-40 border-b border-border bg-page">
   <div class="wrap flex h-16 items-center gap-6 lg:h-[72px]">
     <a href="/" class="flex items-center gap-3 text-ink hover:text-ink">
       <Monogram class="size-8 text-[13px] lg:size-9 lg:text-[15px]" />

@@ -4,6 +4,7 @@ import Hero from '../components/home/Hero.astro';
 import Stats from '../components/home/Stats.astro';
 import Experience from '../components/home/Experience.astro';
 import Writing from '../components/home/Writing.astro';
+import Projects from '../components/home/Projects.astro';
 import Skills from '../components/home/Skills.astro';
 import Education from '../components/home/Education.astro';
 import Contact from '../components/home/Contact.astro';
@@ -17,6 +18,7 @@ const posts = await getAllPosts();
   <Stats postCount={posts.length} />
   <Experience />
   <Writing posts={posts.slice(0, 5)} total={posts.length} />
+  <Projects />
   <Skills />
   <Education />
   <Contact />

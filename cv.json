@@ -204,7 +204,19 @@
       "fluency": "Professional working proficiency"
     }
   ],
-  "projects": [],
+  "projects": [
+    {
+      "name": "Tallydial",
+      "startDate": "2026-09-14",
+      "url": "https://tallydial.com",
+      "description": "Tallydial combines a focus timer with task time tracking. Work in pomodoro sessions, or run a stopwatch, and see exactly how many hours went into each task this week, month or year. It runs entirely in your browser: no account, no installation required, and it keeps working offline.",
+      "highlights": [
+        "Pomodoro sessions or a plain stopwatch",
+        "Hours per task by week, month or year",
+        "Runs in the browser with no account, and works offline"
+      ]
+    }
+  ],
   "publications": [
     {
       "name": "Comparison of Rebus, NServiceBus, and MassTransit in .NET",

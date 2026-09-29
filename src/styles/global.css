@@ -47,8 +47,15 @@
     outline-offset: 2px;
   }
 
+  /* Clear the sticky header (64px, 72px at lg) plus breathing room. */
   [id] {
-    scroll-margin-top: 24px;
+    scroll-margin-top: 88px;
+  }
+
+  @media (min-width: 64rem) {
+    [id] {
+      scroll-margin-top: 96px;
+    }
   }
 }
 
