@@ -18,7 +18,7 @@ export interface Topic {
   count: number;
 }
 
-/** Publications carry no tags in JSON Resume, so their topic is inferred from the title. */
+/** Publications carry no tags in JSON Resume, so unless cv.json sets `topic` it is inferred from the title. */
 const TOPIC_RULES: [RegExp, string][] = [
   [/rebus|nservicebus|masstransit|rabbitmq|saga|kafka|sqs/i, 'Messaging'],
   [/mock|unit test|testing/i, 'Testing'],
@@ -60,7 +60,7 @@ export async function getAllPosts(): Promise<PostSummary[]> {
       title: publication.name,
       summary: publication.summary ?? '',
       date: new Date(`${publication.releaseDate}T00:00:00Z`),
-      topic: inferTopic(publication.name),
+      topic: publication.topic ?? inferTopic(publication.name),
       href: publication.url!,
       publisher: publication.publisher,
     }));

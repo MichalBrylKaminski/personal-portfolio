@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sync:notion": "node --env-file-if-exists=.env scripts/sync-notion.ts",
+    "add:external": "node scripts/add-external.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.2",
@@ -15,9 +17,11 @@
     "@astrojs/sitemap": "^3.7.4",
     "@fontsource/chakra-petch": "^5.3.0",
     "@fontsource/jetbrains-mono": "^5.3.0",
+    "@notionhq/client": "^5.27.0",
     "@tailwindcss/vite": "^4.3.3",
     "@vercel/analytics": "^2.0.1",
     "astro": "^7.3.5",
+    "notion-to-md": "^3.1.9",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {

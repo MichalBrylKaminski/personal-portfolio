@@ -62,6 +62,8 @@ export interface Publication {
   releaseDate: string;
   url?: string;
   summary?: string;
+  /** Extension to JSON Resume: overrides the topic inferred from the title. */
+  topic?: string;
 }
 
 export interface Project {
