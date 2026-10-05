@@ -17,6 +17,10 @@ Every file in `src/content/blog/` becomes a page at `/blog/<file-name>/`. The fr
 | `topic`       | yes      | Groups posts under `/blog/topic/<topic>/`.                   |
 | `updatedDate` | no       | Shown next to the publish date when set.                     |
 | `draft`       | no       | `true` keeps the post out of production builds and the feed. |
+| `notionId`    | no       | Set by `npm run sync:notion`; never add it to a hand-written post. |
+
+Posts written in Notion don't need this file: set their Status to Published and run `npm run sync:notion` (see the
+README). Use this template only for posts you write directly in the repo.
 
 ## Code
 
