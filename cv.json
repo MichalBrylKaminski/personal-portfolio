@@ -215,6 +215,12 @@
         "Hours per task by week, month or year",
         "Runs in the browser with no account, and works offline"
       ]
+    },
+    {
+      "name": "Vimrealm",
+      "startDate": "2026-10-01",
+      "url": "https://vimrealm.com",
+      "description": "An isometric, pixel-art fantasy RPG that teaches Vim motions from scratch."
     }
   ],
   "publications": [
