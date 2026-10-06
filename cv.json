@@ -220,7 +220,12 @@
       "name": "Vimrealm",
       "startDate": "2026-10-01",
       "url": "https://vimrealm.com",
-      "description": "An isometric, pixel-art fantasy RPG that teaches Vim motions from scratch."
+      "description": "Vimrealm is for developers who are comfortable writing code but have never learned Vim. It teaches Vim the way Vim is used: by typing real Vim commands. There are no multiple-choice quizzes and no flashcards.",
+      "highlights": [
+        "Real Vim emulator",
+        "Spells unlock as you learn them",
+        "No build step and no client dependencies"
+      ]
     }
   ],
   "publications": [
