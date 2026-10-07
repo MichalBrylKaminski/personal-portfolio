@@ -3,7 +3,11 @@ import { basics, labelParts } from '../lib/cv';
 /** Copy and settings that don't belong in cv.json. */
 export const site = {
   title: basics.name,
-  description: basics.summary ?? '',
+  /** Appended to the name in the home page `<title>`. */
+  tagline: '.NET Developer & AWS Solutions Architect',
+  /** Meta description (~155 chars); the hero shows the longer `basics.summary`. */
+  description:
+    '.NET developer with over a decade of experience building ticket-selling platforms for the travel industry. AWS Certified Solutions Architect.',
   /** Short facts in the hero's readout card, next to the ones derived from cv.json. */
   readout: {
     role: labelParts[0] ?? '',

@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync:notion": "node --env-file-if-exists=.env scripts/sync-notion.ts",
-    "add:external": "node scripts/add-external.ts"
+    "add:external": "node scripts/add-external.ts",
+    "generate:og": "node scripts/generate-og.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.2",
@@ -28,6 +29,7 @@
     "@astrojs/check": "^0.9.10",
     "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^26.6.3",
+    "sharp": "^0.35.5",
     "typescript": "^6.0.3"
   }
 }

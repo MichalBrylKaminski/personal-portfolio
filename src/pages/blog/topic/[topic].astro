@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BlogIndex from '../../../components/blog/BlogIndex.astro';
+import { basics } from '../../../lib/cv';
 import { getAllPosts, getTopics } from '../../../lib/posts';
 import { site } from '../../../data/site';
 
@@ -12,11 +13,13 @@ export const getStaticPaths = (async () => {
 
 const { topic } = Astro.props;
 const posts = await getAllPosts();
+const topicPosts = posts.filter((post) => post.topic === topic.name);
+const description = `${topicPosts.length} ${topicPosts.length === 1 ? 'article' : 'articles'} on ${topic.name} by ${basics.name}, from the blog "${site.blog.title}".`;
 ---
 
-<BaseLayout title={`${topic.name} posts`} description={site.blog.description} current="blog">
+<BaseLayout title={`${topic.name} posts`} description={description} current="blog">
   <BlogIndex
-    posts={posts.filter((post) => post.topic === topic.name)}
+    posts={topicPosts}
     totalCount={posts.length}
     topics={getTopics(posts)}
     activeTopic={topic.slug}
