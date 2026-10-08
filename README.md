@@ -27,8 +27,10 @@ URLs and absolute links in the RSS feed.
   don't edit those by hand. For posts written directly in the repo, see the draft `post-template.mdx` (visible only
   in `npm run dev`) for the frontmatter fields.
 - **`src/data/site.ts`** holds copy that isn't in `cv.json` (readout card facts, section intros, blog title).
-- **Optional files in `public/`**: add `me_avatar.jpg` (the path in `basics.image`) to replace the initials avatar, and
-  `cv.pdf` to show the Download CV button.
+- **Optional files**: add `src/assets/me_avatar.png` (the basename in `basics.image`) to replace the initials avatar, and
+  `public/cv.pdf` to show the Download CV button.
+- **Project case studies**: `src/content/projects/<name>.mdx` with `project:` set to the `cv.json` project name. Set
+  `draft: false` to publish.
 
 ## Adding an article
 

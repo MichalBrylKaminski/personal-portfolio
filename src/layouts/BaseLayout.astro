@@ -9,17 +9,20 @@ import '../styles/global.css';
 
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import JsonLd from '../components/JsonLd.astro';
 import { site } from '../data/site';
 import { publicFileExists } from '../lib/files';
 
 interface Props {
   title?: string;
   description?: string;
-  current: 'home' | 'blog';
+  current: 'home' | 'blog' | 'project';
   type?: 'website' | 'article';
+  /** Structured data (schema.org objects) to embed as JSON-LD. */
+  jsonLd?: object[];
 }
 
-const { title, description = site.description, current, type = 'website' } = Astro.props;
+const { title, description = site.description, current, type = 'website', jsonLd = [] } = Astro.props;
 const fullTitle = title ? `${title} — ${site.title}` : `${site.title} — ${site.tagline}`;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
 const ogImage = Astro.site && publicFileExists('/og.png') ? new URL('/og.png', Astro.site) : undefined;
@@ -56,6 +59,7 @@ const ogImage = Astro.site && publicFileExists('/og.png') ? new URL('/og.png', A
         </>
       )
     }
+    {jsonLd.length > 0 && <JsonLd data={jsonLd} />}
   </head>
   <body class="flex min-h-dvh flex-col">
     <a

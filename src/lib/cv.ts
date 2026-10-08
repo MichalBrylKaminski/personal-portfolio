@@ -176,6 +176,8 @@ export const experience: ExperienceGroup[] = (() => {
 
 export interface ProjectView {
   name: string;
+  /** URL segment of the project's case-study page. */
+  slug: string;
   url?: string;
   start: YearMonth;
   end: YearMonth | null;
@@ -183,10 +185,18 @@ export interface ProjectView {
   highlights: string[];
 }
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
 /** Projects, most recent first. */
 export const projects: ProjectView[] = cv.projects
   .map((project) => ({
     name: project.name,
+    slug: slugify(project.name),
     url: project.url,
     start: parseYearMonth(project.startDate),
     end: project.endDate ? parseYearMonth(project.endDate) : null,

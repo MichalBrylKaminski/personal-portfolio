@@ -1,6 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import { avatar } from '../../lib/avatar';
 import { basics } from '../../lib/cv';
-import { publicFileExists } from '../../lib/files';
 
 interface Props {
   size: number;
@@ -8,7 +9,6 @@ interface Props {
 }
 
 const { size, class: className } = Astro.props;
-const image = publicFileExists(basics.image) ? basics.image : undefined;
 const initials = basics.name
   .split(/\s+/)
   .map((part) => part[0])
@@ -17,12 +17,15 @@ const initials = basics.name
 ---
 
 {
-  image ? (
-    <img
-      src={image}
+  avatar ? (
+    <Image
+      src={avatar}
       alt={basics.name}
       width={size}
       height={size}
+      densities={[1, 2]}
+      format="webp"
+      loading="eager"
       class:list={['rounded-full border border-border object-cover', className]}
       style={{ width: `${size}px`, height: `${size}px` }}
     />

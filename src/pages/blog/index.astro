@@ -2,11 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogIndex from '../../components/blog/BlogIndex.astro';
 import { getAllPosts, getTopics } from '../../lib/posts';
+import { breadcrumbSchema } from '../../lib/jsonld';
 import { site } from '../../data/site';
 
 const posts = await getAllPosts();
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
 ---
 
-<BaseLayout title="Blog" description={site.blog.description} current="blog">
+<BaseLayout
+  title="Blog"
+  description={site.blog.description}
+  current="blog"
+  jsonLd={[breadcrumbSchema(siteUrl, [{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog/' }])]}
+>
   <BlogIndex posts={posts} totalCount={posts.length} topics={getTopics(posts)} />
 </BaseLayout>

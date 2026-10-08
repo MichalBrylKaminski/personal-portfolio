@@ -2,6 +2,9 @@
 import Icon from '../Icon.astro';
 import SectionHeading from '../SectionHeading.astro';
 import { isCurrent, monthRange, projects } from '../../lib/cv';
+import { getCaseStudySlugs } from '../../lib/projects';
+
+const caseStudies = await getCaseStudySlugs();
 ---
 
 {
@@ -27,11 +30,18 @@ import { isCurrent, monthRange, projects } from '../../lib/cv';
                 ))}
               </ul>
             )}
-            {project.url && (
-              <a href={project.url} class="btn btn-outline-accent self-start" rel="noopener">
-                Visit {new URL(project.url).hostname} <Icon name="arrow-up-right" size={14} strokeWidth={2} />
-              </a>
-            )}
+            <div class="flex flex-wrap gap-2.5">
+              {caseStudies.has(project.slug) && (
+                <a href={`/projects/${project.slug}/`} class="btn btn-primary">
+                  Read case study <Icon name="arrow-right" size={14} strokeWidth={2} />
+                </a>
+              )}
+              {project.url && (
+                <a href={project.url} class="btn btn-outline-accent" rel="noopener">
+                  Visit {new URL(project.url).hostname} <Icon name="arrow-up-right" size={14} strokeWidth={2} />
+                </a>
+              )}
+            </div>
           </li>
         ))}
       </ul>

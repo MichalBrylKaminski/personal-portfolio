@@ -18,4 +18,18 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+/** Case studies. Facts (url, dates, highlights) come from the matching cv.json `projects` entry. */
+const projects = defineCollection({
+  loader: glob({ base: './src/content/projects', pattern: '**/[^_]*.{md,mdx}' }),
+  schema: z.object({
+    /** Must equal the `name` of an entry in cv.json `projects`. */
+    project: z.string(),
+    /** Meta description, ~155 characters. */
+    description: z.string(),
+    updatedDate: z.coerce.date().optional(),
+    /** Drafts render in `astro dev` only. */
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog, projects };
