@@ -9,7 +9,7 @@ notionId: "3ffd7dc0-4e3b-80f8-bef5-d2cc76740cbb"
 Most developers I know have the same relationship with Vim: they learned just enough to exit it, and never went further.
 
 
-I wanted to fix that, so I built [Vimrealm](https://vimrealm.com/?ref=devto): a browser RPG where you type real Vim commands to move a wizard around an isometric island made of text. Letters are stone, digits are crystal, punctuation is sandstone, spaces are grass. Press `w` and the wizard leaps to the next word. Press `dd` and a whole row of tiles drops away.
+I wanted to fix that, so I built [Vimrealm](https://vimrealm.com/?ref=portfolio): a browser RPG where you type real Vim commands to move a wizard around an isometric island made of text. Letters are stone, digits are crystal, punctuation is sandstone, spaces are grass. Press `w` and the wizard leaps to the next word. Press `dd` and a whole row of tiles drops away.
 
 
 Here's what I learned building it, including the parts I got wrong.
