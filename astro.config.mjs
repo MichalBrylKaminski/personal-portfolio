@@ -31,7 +31,7 @@ const pages = contentPages();
 
 export default defineConfig({
   // Used for canonical URLs, the RSS feed and the sitemap. Override with SITE_URL (e.g. for preview builds).
-  site: process.env.SITE_URL ?? 'https://brylex-it.pl',
+  site: process.env.SITE_URL ?? 'https://brylex-it.dev',
   integrations: [
     mdx(),
     sitemap({

@@ -15,7 +15,7 @@ const HEIGHT = 630;
 
 const name = cv.basics.name;
 const role = '.NET Developer & AWS Solutions Architect';
-const host = new URL(cv.basics.url || 'https://brylex-it.pl').hostname;
+const host = new URL(cv.basics.url || 'https://brylex-it.dev').hostname;
 
 const escapeXml = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 

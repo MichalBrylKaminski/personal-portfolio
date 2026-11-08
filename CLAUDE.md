@@ -7,7 +7,7 @@ Personal portfolio + blog for Michał Kamiński. Astro 7 (static output), Tailwi
 - `npm run dev` — dev server on `localhost:4321`; draft posts are visible here only.
 - `npm run build` — `astro check` then `astro build` to `dist/`. Run this to verify changes; it must finish with 0 errors.
 - `npx astro sync` — regenerate content-collection types after changing `src/content.config.ts`.
-- `SITE_URL=https://… npm run build` — overrides `site` (defaults to `https://brylex-it.pl`; used for canonical URLs, RSS, sitemap).
+- `SITE_URL=https://… npm run build` — overrides `site` (defaults to `https://brylex-it.dev`; used for canonical URLs, RSS, sitemap).
 
 ## Where things come from
 
@@ -39,5 +39,5 @@ The look follows the **Tallydial** design system ("control room": a single dark 
 ## Decisions already made
 
 - Command palette (Ctrl K) was intentionally dropped for now.
-- Hosting is Vercel (static output, no adapter) with the domain `brylex-it.pl`. The original Hostinger host couldn't be used, so the Node adapter was added and then removed. `@astrojs/sitemap` generates the sitemap.
+- Hosting is Vercel (static output, no adapter) with the domain `brylex-it.dev`; the old `brylex-it.pl` stays as a permanent (301) redirect to it, configured in the Vercel project domains, not in code. The original Hostinger host couldn't be used, so the Node adapter was added and then removed. `@astrojs/sitemap` generates the sitemap.
 - Git remote: `github.com/MichalBrylKaminski/personal-portfolio`. Main branch is `master`.
